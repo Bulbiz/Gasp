@@ -6,11 +6,9 @@ open Deftype
 %token<string> ID
 %token<int> NOMBRE
 
-%start<Deftype.instruction> input
+%start<Deftype.instruction> programme
 
 %%
-
-input: i = instruction EOF { i }
 
 programme: declaration instruction
 

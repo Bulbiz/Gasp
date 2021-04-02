@@ -17,7 +17,6 @@ and expressionsuite =
   | Rien
 
 type instruction =
-  | Var of identificateur
   | Avance of expression
   | Tourne of expression
   | BasPinceau
@@ -25,3 +24,7 @@ type instruction =
   | Affectation of identificateur * expression
   | Debut
   | Fin
+
+type declaration = Var of identificateur
+
+type programme = declaration list * instruction list
