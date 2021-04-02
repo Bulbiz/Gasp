@@ -1,0 +1,12 @@
+(library
+ (name dependance)
+ (modules (:standard \ main))
+ (flags :standard -w -27-26-32-33)
+)
+
+(executable
+ (name main)
+ (modules main)
+ (libraries graphics dependance)
+ (flags :standard -w -27-26-32-33)
+)
