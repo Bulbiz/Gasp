@@ -2,23 +2,24 @@
 open Deftype
 %}
 
-%token AVANCE TOURNE BASPINCEAU HAUTPINCEAU DEBUT FIN VAR EOF EQUALS ENDLINE PLUS MOINS EPSILON RPAREN LPAREN
+%token AVANCE TOURNE BASPINCEAU HAUTPINCEAU DEBUT FIN VAR EOF EQUALS ENDLINE PLUS MOINS RPAREN LPAREN
 %token<string> ID
 %token<int> NOMBRE
 
-%start<Deftype.instruction> programme
+%start<Deftype.programme> s
 
 %%
+s: p=programme EOF {p}
 
 programme: declaration instruction
 
 declaration:
 | VAR ID ENDLINE declaration 
-| EPSILON
+| 
 
 blocInstruction: 
 | instruction ENDLINE blocInstruction 
-| EPSILON
+| 
 
 expression: 
 | NOMBRE expressionsuite 
@@ -28,11 +29,10 @@ expression:
 expressionsuite:
 | PLUS expression
 | MOINS expression
-| EPSILON
+| 
 
 instruction:
 | DEBUT blocInstruction FIN { Debut } (*TODO: compléter cette ligne*)
-| VAR v=ID { Var(v) }
 | BASPINCEAU { BasPinceau }
 | HAUTPINCEAU { HautPinceau }
 | AVANCE e=expression { Avance(e) }
