@@ -1,6 +1,6 @@
 (* programme principal *)
 
-open Syntax
+open Deftype
 open Graphics
 open Turtle
 
