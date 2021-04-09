@@ -1,8 +1,11 @@
-binary:
-	dune build main.exe
+EXE=main.exe
+BUILD=_build/default/$(EXE)
 
-byte:
-	dune build main.bc
+build:
+	rm -f $(EXE) 
+	dune build
+	ln -s $(BUILD)
 
 clean:
 	dune clean
+	rm -f $(EXE)
