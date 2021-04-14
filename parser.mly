@@ -6,7 +6,7 @@
 %token<string> ID
 %token<int> NOMBRE
 
-%start<string> s
+%start<string(*Deftype.programme*)> s
 
 %%
 s: programme EOF {"aaaa"}
