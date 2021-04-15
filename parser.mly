@@ -18,24 +18,24 @@ declaration:
 | {"aaaa"}
 
 blocInstruction: 
-| instruction ENDLINE blocInstruction {"aaaa"}
+| instruction ENDLINE blocInstruction {"aaaa"} (*TODO : définir la valeur de retour de ce cas*)
 | {"aaaa"}
 
 expression: 
-| NOMBRE expressionsuite {"aaaa"}
-| ID expressionsuite {"aaaa"}
-| LPAREN expression RPAREN expressionsuite {"aaaa"}
+| i=NOMBRE e=expressionsuite { Nombre (i, e) }
+| s=ID e=expressionsuite { Id (s, e) }
+| LPAREN e=expression RPAREN es=expressionsuite { Exp (e, es) }
 
 expressionsuite:
-| PLUS expression {"aaaa"}
-| MOINS expression {"aaaa"} 
-| DIV expression {"aaaa"} 
+| PLUS e=expression { Plus (e) }
+| MOINS expression { Moins (e) } 
+| DIV expression {"aaaa"} (*TODO : Implémenter la division*)
 | {"aaaa"}
 
 instruction:
 | DEBUT blocInstruction FIN {"aaaa"} (*TODO: compléter cette ligne*)
-| BASPINCEAU {"aaaa"}
-| HAUTPINCEAU {"aaaa"}
-| AVANCE expression {"aaaa"}
-| TOURNE expression {"aaaa"}
-| ID EQUALS expression {"aaaa"}
+| BASPINCEAU { BasPinceau }
+| HAUTPINCEAU { HautPinceau }
+| AVANCE e=expression { Avance (e) }
+| TOURNE e=expression { Tourne (e) }
+| x=ID EQUALS v=expression { Affectation (x, v) }
