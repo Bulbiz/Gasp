@@ -28,7 +28,7 @@ expression:
 
 expressionsuite:
 | PLUS e=expression { Plus (e) }
-| MOINS expression { Moins (e) } 
+| MOINS e=expression { Moins (e) } 
 | DIV expression {"aaaa"} (*TODO : Implémenter la division*)
 | {"aaaa"}
 
