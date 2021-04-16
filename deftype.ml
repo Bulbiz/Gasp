@@ -14,6 +14,7 @@ type expression =
 and expressionsuite =
   | Plus of expression
   | Moins of expression
+  | Division of expression
   | Rien
 
 type instruction =
@@ -25,6 +26,8 @@ type instruction =
   | Debut
   | Fin
 
-type declaration = Var of identificateur
+type declaration = 
+  | Var of identificateur
+  | EndDeclaration
 
-type programme = declaration list * instruction list
+type programme = Programme of declaration list * instruction list
