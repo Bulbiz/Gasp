@@ -1,41 +1,41 @@
 %{
-(*open Deftype*)
+open Deftype
 %}
 
 %token AVANCE TOURNE BASPINCEAU HAUTPINCEAU DEBUT FIN VAR EOF EQUALS ENDLINE PLUS MOINS RPAREN LPAREN DIV
 %token<string> ID
 %token<int> NOMBRE
 
-%start<string(*Deftype.programme*)> s
+%start<Deftype.programme> s
 
 %%
-s: programme EOF {"aaaa"}
+s: p=programme EOF { p }
 
-programme: declaration instruction {"aaaa"}
+programme: d=declaration i=instruction { Programme (d, i) }
 
 declaration:
-| VAR ID ENDLINE declaration {"aaaa"}
-| {"aaaa"}
+| VAR id=ID ENDLINE d=declaration { [Var (id)] @ d }
+| { [] }
 
 blocInstruction: 
-| instruction ENDLINE blocInstruction {"aaaa"}
-| {"aaaa"}
+| i=instruction ENDLINE bi=blocInstruction { i @ bi } (*TODO : définir la valeur de retour de ce cas*)
+| { [] }
 
 expression: 
-| NOMBRE expressionsuite {"aaaa"}
-| ID expressionsuite {"aaaa"}
-| LPAREN expression RPAREN expressionsuite {"aaaa"}
+| i=NOMBRE e=expressionsuite { Nombre (i, e) }
+| s=ID e=expressionsuite { Id (s, e) }
+| LPAREN e=expression RPAREN es=expressionsuite { Exp (e, es) }
 
 expressionsuite:
-| PLUS expression {"aaaa"}
-| MOINS expression {"aaaa"} 
-| DIV expression {"aaaa"} 
-| {"aaaa"}
+| PLUS e=expression { Plus (e) }
+| MOINS e=expression { Moins (e) } 
+| DIV e=expression { Division (e) } 
+| { Rien }
 
 instruction:
-| DEBUT blocInstruction FIN {"aaaa"} (*TODO: compléter cette ligne*)
-| BASPINCEAU {"aaaa"}
-| HAUTPINCEAU {"aaaa"}
-| AVANCE expression {"aaaa"}
-| TOURNE expression {"aaaa"}
-| ID EQUALS expression {"aaaa"}
+| DEBUT bi=blocInstruction FIN { bi } 
+| BASPINCEAU { [BasPinceau] }
+| HAUTPINCEAU { [HautPinceau] }
+| AVANCE e=expression { [Avance (e)] }
+| TOURNE e=expression { [Tourne (e)] }
+| x=ID EQUALS v=expression { [Affectation (x, v)] }
