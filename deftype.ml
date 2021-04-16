@@ -31,3 +31,6 @@ type declaration =
   | EndDeclaration
 
 type programme = Programme of declaration list * instruction list
+
+let as_string = function
+  |_ -> "aaa"

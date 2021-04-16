@@ -14,11 +14,11 @@ s: p=programme EOF { p }
 programme: d=declaration i=instruction { Programme (d, i) }
 
 declaration:
-| VAR id=ID ENDLINE d=declaration { Var (id) :: d }
+| VAR id=ID ENDLINE d=declaration { [Var (id)] @ d }
 | { [] }
 
 blocInstruction: 
-| i=instruction ENDLINE bi=blocInstruction { i :: bi } (*TODO : définir la valeur de retour de ce cas*)
+| i=instruction ENDLINE bi=blocInstruction { i @ bi } (*TODO : définir la valeur de retour de ce cas*)
 | { [] }
 
 expression: 
@@ -34,8 +34,8 @@ expressionsuite:
 
 instruction:
 | DEBUT bi=blocInstruction FIN { bi } 
-| BASPINCEAU { BasPinceau }
-| HAUTPINCEAU { HautPinceau }
-| AVANCE e=expression { Avance (e) }
-| TOURNE e=expression { Tourne (e) }
-| x=ID EQUALS v=expression { Affectation (x, v) }
+| BASPINCEAU { [BasPinceau] }
+| HAUTPINCEAU { [HautPinceau] }
+| AVANCE e=expression { [Avance (e)] }
+| TOURNE e=expression { [Tourne (e)] }
+| x=ID EQUALS v=expression { [Affectation (x, v)] }
