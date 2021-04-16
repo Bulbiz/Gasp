@@ -23,9 +23,10 @@ type instruction =
   | BasPinceau
   | HautPinceau
   | Affectation of identificateur * expression
+(* 
   | Debut
   | Fin
-
+*)
 type declaration = 
   | Var of identificateur
   | EndDeclaration
