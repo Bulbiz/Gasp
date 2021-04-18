@@ -46,7 +46,7 @@ and eval_exprsuite value env expsuite =
 
 
 let interpret_avance env value =
-  printf "Avance\n";
+  printf "Avance %d\n" value;
   update_current_position (float_of_int value) 0 (!current_position.pen);
   if !current_position.pen then
     (moveto (int_of_float !current_position.x) (int_of_float !current_position.y);
@@ -57,7 +57,7 @@ let interpret_avance env value =
 ;;
 
 let interpret_tourne env value =
-  printf "Tourne\n";
+  printf "Tourne %d\n" value;
   update_current_position 0. value (!current_position.pen);
   env
 ;;
@@ -75,7 +75,7 @@ let interpret_haut_pinceau env =
 ;;
 
 let interpret_affectation env id value =
-  printf "Affectation\n";
+  printf "Affectation %s : %d\n" id value;
   let new_env = (id,value) :: (List.remove_assoc id env) in
   new_env
 ;;
@@ -109,116 +109,3 @@ let interpret_programme programme =
     let env = List.map transform_declaration dl in
     interpret_instructions env il
 ;;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(*
-type position =
-  { x : float (** position x *)
-  ; y : float (** position y *)
-  ; a : int (** angle of the direction *)
-  ; pen : bool (** true -> pen down, false -> pen up *)
-  }
-
-let initial_position = { x = 0.; y = 0.; a = 0 ; pen = false }
-let current_position = ref initial_position
-
-let convert_degree_to_radian angle = angle *. (Float.pi /. 180.)
-
-let update_current_position i a =
-  let angle = convert_degree_to_radian (float_of_int !current_position.a) in
-  let longueur = i in
-  let new_x = !current_position.x +. (cos angle *. longueur) in
-  let new_y = !current_position.y +. (sin angle *. longueur) in
-  let new_a = !current_position.a + a in
-  current_position := { x = new_x; y = new_y; a = new_a }
-;;
-
-let interpret_line i =
-  update_current_position i 0;
-  lineto (int_of_float !current_position.x) (int_of_float !current_position.y)
-;;
-
-let interpret_move i =
-  update_current_position i 0;
-  moveto (int_of_float !current_position.x) (int_of_float !current_position.y)
-;;
-
-let interpret_turn a = update_current_position 0. a 
-;;
-*)
