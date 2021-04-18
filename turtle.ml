@@ -2,43 +2,38 @@ open Deftype
 (*open Graphics*)
 open Printf
 
-let interpret_avance =
+let interpret_avance env =
   printf "Avance\n";
-  ()
+  env
+;;
 
-let interpret_tourne =
+let interpret_tourne env =
   printf "Tourne\n";
-  ()
+  env
+;;
 
-let interpret_bas_pinceau =
+let interpret_bas_pinceau env =
   printf "Bas\n";
-  ()
+  env
+;;
 
-let interpret_haut_pinceau =
+let interpret_haut_pinceau env =
   printf "Haut\n";
-  ()
+  env
+;;
 
-let interpret_affectation =
+let interpret_affectation env =
   printf "Affectation\n";
-  ()
+  env
+;;
 
 let interpret_instruction env i =
   match i with
-  |Avance (_) -> 
-    interpret_avance; 
-    env
-  |Tourne (_) -> 
-    interpret_tourne; 
-    env
-  |BasPinceau -> 
-    interpret_bas_pinceau; 
-    env
-  |HautPinceau -> 
-    interpret_haut_pinceau; 
-    env
-  |Affectation (_,_) -> 
-    interpret_affectation;
-    env
+  |Avance (_) -> interpret_avance env
+  |Tourne (_) -> interpret_tourne env
+  |BasPinceau -> interpret_bas_pinceau env
+  |HautPinceau -> interpret_haut_pinceau env
+  |Affectation (_,_) -> interpret_affectation env
 
 let rec interpret_instructions env il =
   match il with
@@ -52,14 +47,10 @@ let transform_declaration d =
   |Var(s) -> (s,0)
 ;;
 
-let interpret_declarations dl =
-  List.map transform_declaration dl
-;;
-
 let interpret_programme programme =
   match programme with
   | Programme (dl,il) -> 
-    let env = interpret_declarations dl in
+    let env = List.map transform_declaration dl in
     interpret_instructions env il
 ;;
 
