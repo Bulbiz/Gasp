@@ -1,13 +1,11 @@
 (* programme principal *)
 
-open Deftype
 open Graphics
-(*open Turtle*)
 
 let main () =
-  let ast = Parser.s Lexeur.token (Lexing.from_channel stdin) in 
+  let programme = Parser.s Lexeur.token (Lexing.from_channel stdin) in 
   open_graph(" 800x600");
-  Printf.printf "Parse:\n%s\n" (as_string ast)
+  Turtle.interpret_programme programme
 ;;
 
 let () = main ()
