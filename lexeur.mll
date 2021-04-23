@@ -12,6 +12,11 @@ rule token = parse
 |"Var"  { VAR }
 |id    { ID (Lexing.lexeme lexbuf) }
 |values     { NOMBRE (int_of_string (Lexing.lexeme lexbuf)) }
+|"Si"     { SI }
+|"Alors"    { ALORS }
+|"Sinon"    { SINON }
+|"Tant que"     { WHILE }
+|"Faire"    { FAIRE }
 |"Debut"    { DEBUT }
 |"Fin"    { FIN }  
 |"HautPinceau"     { HAUTPINCEAU }
