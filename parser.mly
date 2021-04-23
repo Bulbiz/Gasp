@@ -2,7 +2,7 @@
 open Deftype
 %}
 
-%token AVANCE TOURNE BASPINCEAU HAUTPINCEAU DEBUT FIN VAR EOF EQUALS ENDLINE PLUS MOINS RPAREN LPAREN DIV
+%token AVANCE TOURNE BASPINCEAU HAUTPINCEAU DEBUT FIN VAR EOF EQUALS ENDLINE PLUS MOINS RPAREN LPAREN DIV SI ALORS SINON WHILE FAIRE
 %token<string> ID
 %token<int> NOMBRE
 
@@ -34,6 +34,8 @@ expressionsuite:
 
 instruction:
 | DEBUT bi=blocInstruction FIN { bi } 
+| SI e=expression ALORS ba=instruction SINON bs=instruction { [Si (e, ba, bs)] }
+| WHILE e=expression FAIRE bi=instruction { [Tant_que (e, bi)] }
 | BASPINCEAU { [BasPinceau] }
 | HAUTPINCEAU { [HautPinceau] }
 | AVANCE e=expression { [Avance (e)] }
