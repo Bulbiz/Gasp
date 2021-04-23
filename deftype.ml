@@ -23,6 +23,8 @@ type instruction =
   | BasPinceau
   | HautPinceau
   | Affectation of identificateur * expression
+  | Si of expression * instruction list * instruction list
+  | Tant_que of expression * instruction list
 (* 
   | Debut
   | Fin
