@@ -29,7 +29,6 @@ type instruction =
 *)
 type declaration = 
   | Var of identificateur
-  | EndDeclaration
 
 type programme = Programme of declaration list * instruction list
 
