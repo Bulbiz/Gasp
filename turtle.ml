@@ -25,7 +25,12 @@ let update_current_position i a p=
 ;;
 
 let get_value id env =
-  List.assoc id env
+  if (List.mem_assoc id env) then(
+    List.assoc id env
+  )else(
+    Printf.printf "La variable %s n'est pas définie ! 0 par défaut\n" id;
+    0
+  )
 
 let rec eval_expr env exp =
   match exp with
@@ -81,20 +86,35 @@ let interpret_affectation env id value =
 ;;
 
 
-let interpret_instruction env i =
+let rec interpret_instruction env i =
   match i with
   |Avance (exp) -> interpret_avance env (eval_expr env exp)
   |Tourne (exp) -> interpret_tourne env (eval_expr env exp)
   |BasPinceau -> interpret_bas_pinceau env
   |HautPinceau -> interpret_haut_pinceau env
   |Affectation (id,exp) -> interpret_affectation env id (eval_expr env exp)
+  |Si (exp,itrue, ifalse) -> interpret_si env exp itrue ifalse 
+  |Tant_que (exp,i) -> interpret_tant_que env exp i
 
-let rec interpret_instructions env il =
+and interpret_si env exp itrue ifalse = 
+  if (eval_expr env exp != 0) then
+    interpret_instructions env itrue
+  else
+    interpret_instructions env ifalse
+
+and interpret_tant_que env exp i =
+  if (eval_expr env exp != 0) then
+    let new_env = interpret_instructions env i in
+    interpret_tant_que new_env exp i
+  else
+    env
+
+and interpret_instructions env il =
   match il with
   | i :: l -> 
     let new_env = interpret_instruction env i in 
     interpret_instructions new_env l
-  | [] -> ()
+  | [] -> env
 
 let transform_declaration d =
   match d with
@@ -107,5 +127,6 @@ let interpret_programme programme =
   match programme with
   | Programme (dl,il) -> 
     let env = List.map transform_declaration dl in
-    interpret_instructions env il
+    let _ = interpret_instructions env il in
+    ()
 ;;
