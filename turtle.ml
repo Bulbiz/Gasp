@@ -9,7 +9,7 @@ type position =
   ; pen : bool (** true -> pen down, false -> pen up *)
   }
 
-let initial_position = { x = 0.; y = 0.; a = 90 ; pen = false }
+let initial_position = { x = 0.; y = 0.; a = 90 ; pen = true }
 let current_position = ref initial_position
 
 let convert_degree_to_radian angle = angle *. (Float.pi /. 180.)
