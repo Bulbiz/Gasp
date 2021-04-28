@@ -15,6 +15,7 @@ and expressionsuite =
   | Plus of expression
   | Moins of expression
   | Division of expression
+  | Multiplication of expression
   | Rien
 
 type instruction =
