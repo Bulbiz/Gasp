@@ -30,6 +30,7 @@ expressionsuite:
 | PLUS e=expression { Plus (e) }
 | MOINS e=expression { Moins (e) } 
 | DIV e=expression { Division (e) } 
+| MUL e=expression { Multiplication (e) }
 | { Rien }
 
 instruction:
