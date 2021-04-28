@@ -2,7 +2,7 @@
 open Parser
 }
 
-let values = ['1'-'9']['0'-'9']* | '0'
+let values = '-'?['1'-'9']['0'-'9']* | '0'
 let id = ['a'-'z']['a'-'z''A'-'Z''0'-'9']*
 let layout = [ ' ' '\t' '\n' ]
 
