@@ -47,6 +47,7 @@ and eval_exprsuite value env expsuite =
   |Plus (exp) -> value + (eval_expr env exp)
   |Moins (exp) -> value - (eval_expr env exp)
   |Division (exp) -> value / (eval_expr env exp)
+  |Multiplication (exp) -> value * (eval_expr env exp)
   |Rien -> value
 
 
