@@ -27,6 +27,7 @@ rule token = parse
 |")"      { RPAREN }
 |"+"      { PLUS }
 |"-"      { MOINS }
+|"*"      { MUL }
 |"="      { EQUALS }
 |"/"      { DIV }
 |";"      { ENDLINE }
