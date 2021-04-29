@@ -97,12 +97,14 @@ let rec interpret_instruction env i =
   |Tant_que (exp,i) -> interpret_tant_que env exp i
 
 and interpret_si env exp itrue ifalse = 
+  printf "IF %d\n" (eval_expr env exp);
   if (eval_expr env exp != 0) then
     interpret_instructions env itrue
   else
     interpret_instructions env ifalse
 
 and interpret_tant_que env exp i =
+  printf "Tant que %d\n" (eval_expr env exp);
   if (eval_expr env exp != 0) then
     let new_env = interpret_instructions env i in
     interpret_tant_que new_env exp i
