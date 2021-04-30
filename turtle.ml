@@ -32,7 +32,11 @@ let get_value id env =
     0
   )
 
-let rec eval_expr env exp =
+let eval_expr env exp =
+  match exp with
+  | _ -> get_value "a" env
+
+(*let rec eval_expr env exp =
   match exp with
   | Nombre (nb,expsuite) -> eval_exprsuite nb env expsuite
   | Id (id,expsuite) -> 
@@ -48,7 +52,7 @@ and eval_exprsuite value env expsuite =
   |Moins (exp) -> value - (eval_expr env exp)
   |Division (exp) -> value / (eval_expr env exp)
   |Multiplication (exp) -> value * (eval_expr env exp)
-  |Rien -> value
+  |Rien -> value*)
 
 
 let interpret_avance env value =
