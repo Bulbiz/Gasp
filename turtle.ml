@@ -32,28 +32,14 @@ let get_value id env =
     0
   )
 
-let eval_expr env exp =
+let rec eval_expr env exp =
   match exp with
-  | _ -> get_value "a" env
-
-(*let rec eval_expr env exp =
-  match exp with
-  | Nombre (nb,expsuite) -> eval_exprsuite nb env expsuite
-  | Id (id,expsuite) -> 
-    let value = get_value id env in
-    eval_exprsuite value env expsuite
-  | Exp (exp2,expsuite) -> 
-    let value = eval_expr env exp2 in
-    eval_exprsuite value env expsuite
-
-and eval_exprsuite value env expsuite =
-  match expsuite with
-  |Plus (exp) -> value + (eval_expr env exp)
-  |Moins (exp) -> value - (eval_expr env exp)
-  |Division (exp) -> value / (eval_expr env exp)
-  |Multiplication (exp) -> value * (eval_expr env exp)
-  |Rien -> value*)
-
+  | Nombre (nb) -> nb
+  | Id (var) -> get_value var env
+  | Plus (exp1, exp2) -> (eval_expr env exp1) + (eval_expr env exp2)
+  | Moins (exp1, exp2) -> (eval_expr env exp1) - (eval_expr env exp2)
+  | Division (exp1, exp2) -> (eval_expr env exp1) / (eval_expr env exp2)
+  | Multiplication (exp1, exp2) -> (eval_expr env exp1) * (eval_expr env exp2)
 
 let interpret_avance env value =
   printf "Avance %d\n" value;
