@@ -7,15 +7,13 @@ type nombre = int
 |(exp : expression; suite : expressionsuite)*)
 
 type expression =
-  | Nombre of nombre * expressionsuite
-  | Id of identificateur * expressionsuite
-  | Exp of expression * expressionsuite
-
-and expressionsuite =
-  | Plus of expression
-  | Moins of expression
-  | Division of expression
-  | Rien
+  | Nombre of nombre 
+  | Id of identificateur 
+  | Plus of expression * expression
+  | Moins of expression * expression
+  | Division of expression * expression
+  | Multiplication of expression * expression
+  (*| Rien*)
 
 type instruction =
   | Avance of expression
