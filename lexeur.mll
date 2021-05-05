@@ -19,8 +19,9 @@ rule token = parse
 |"Faire"    { FAIRE }
 |"Debut"    { DEBUT }
 |"Fin"    { FIN }  
-|"HautPinceau"     { HAUTPINCEAU }
+|"ChangeCouleur"     { CHANGECOULEUR }
 |"BasPinceau"      { BASPINCEAU }
+|"HautPinceau"     { HAUTPINCEAU }
 |"Avance"      { AVANCE }
 |"Tourne"      { TOURNE }
 |"("      { LPAREN }
