@@ -20,6 +20,7 @@ rule token = parse
 |"Debut"    { DEBUT }
 |"Fin"    { FIN }  
 |"ChangeCouleur"     { CHANGECOULEUR }
+|"ChangeEpaisseur"    { CHANGEEPAISSEUR }
 |"BasPinceau"      { BASPINCEAU }
 |"HautPinceau"     { HAUTPINCEAU }
 |"Avance"      { AVANCE }

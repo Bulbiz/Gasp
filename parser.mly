@@ -2,7 +2,7 @@
 open Deftype
 %}
 
-%token AVANCE TOURNE BASPINCEAU HAUTPINCEAU DEBUT FIN VAR EOF EQUALS ENDLINE PLUS MOINS RPAREN LPAREN DIV MUL SI ALORS SINON WHILE FAIRE CHANGECOULEUR
+%token AVANCE TOURNE BASPINCEAU HAUTPINCEAU DEBUT FIN VAR EOF EQUALS ENDLINE PLUS MOINS RPAREN LPAREN DIV MUL SI ALORS SINON WHILE FAIRE CHANGECOULEUR CHANGEEPAISSEUR
 %token<string> ID
 %token<int> NOMBRE
 %left PLUS MOINS
@@ -52,6 +52,7 @@ instruction:
 | SI e=expression ALORS ba=instruction SINON bs=instruction { [Si (e, ba, bs)] }
 | WHILE e=expression FAIRE bi=instruction { [Tant_que (e, bi)] }
 | CHANGECOULEUR c=ID { [ChangeCouleur (c)] }
+| CHANGEEPAISSEUR i=NOMBRE { [ChangeEpaisseur (i)] }
 | BASPINCEAU { [BasPinceau] }
 | HAUTPINCEAU { [HautPinceau] }
 | AVANCE e=expression { [Avance (e)] }

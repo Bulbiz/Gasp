@@ -77,7 +77,7 @@ let interpret_affectation env id value =
 ;;
 
 
-let interpret_couleur env (id : string) =
+(*let interpret_couleur env (id : string) =
   match id with
   |"black" -> set_color black
   |"white" -> set_color white
@@ -89,19 +89,30 @@ let interpret_couleur env (id : string) =
   |"magenta" -> set_color magenta
   | _ -> set_color black;
   env
-;;
+;;*)
+
+
+let interpret_epaisseur env value =
+  if value < 0 then(
+    printf "Vous ne pouvez pas demander une valeur négative pour l'épaisseur\n";
+    env
+  )else(
+    set_line_width value;
+    env
+  )
 
 
 let rec interpret_instruction env i =
   match i with
   |Avance (exp) -> interpret_avance env (eval_expr env exp)
   |Tourne (exp) -> interpret_tourne env (eval_expr env exp)
-  (*|ChangeCouleur (couleur) -> interpret_couleur env couleur*)
+  |ChangeEpaisseur (taille) -> interpret_epaisseur env taille
   |BasPinceau -> interpret_bas_pinceau env
   |HautPinceau -> interpret_haut_pinceau env
   |Affectation (id,exp) -> interpret_affectation env id (eval_expr env exp)
   |Si (exp,itrue, ifalse) -> interpret_si env exp itrue ifalse 
   |Tant_que (exp,i) -> interpret_tant_que env exp i
+  |_ -> env
 
 and interpret_si env exp itrue ifalse = 
   if (eval_expr env exp != 0) then
