@@ -77,19 +77,18 @@ let interpret_affectation env id value =
 ;;
 
 
-(*let interpret_couleur env (id : string) =
+let interpret_couleur env (id : string) =
   match id with
-  |"black" -> set_color black
-  |"white" -> set_color white
-  |"red" -> set_color red
-  |"green" -> set_color green
-  |"blue" -> set_color blue
-  |"yellow" -> set_color yellow
-  |"cyan" -> set_color cyan
-  |"magenta" -> set_color magenta
-  | _ -> set_color black;
-  env
-;;*)
+  |"black" -> set_color black; env
+  |"white" -> set_color white; env
+  |"red" -> set_color red; env
+  |"green" -> set_color green; env
+  |"blue" -> set_color blue; env
+  |"yellow" -> set_color yellow; env
+  |"cyan" -> set_color cyan; env
+  |"magenta" -> set_color magenta; env
+  | _ -> set_color black; env
+;;
 
 
 let interpret_epaisseur env value =
@@ -106,6 +105,7 @@ let rec interpret_instruction env i =
   match i with
   |Avance (exp) -> interpret_avance env (eval_expr env exp)
   |Tourne (exp) -> interpret_tourne env (eval_expr env exp)
+  |ChangeCouleur (couleur) -> interpret_couleur env couleur
   |ChangeEpaisseur (taille) -> interpret_epaisseur env taille
   |BasPinceau -> interpret_bas_pinceau env
   |HautPinceau -> interpret_haut_pinceau env
