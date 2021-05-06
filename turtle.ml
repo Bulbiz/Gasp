@@ -112,7 +112,6 @@ let rec interpret_instruction env i =
   |Affectation (id,exp) -> interpret_affectation env id (eval_expr env exp)
   |Si (exp,itrue, ifalse) -> interpret_si env exp itrue ifalse 
   |Tant_que (exp,i) -> interpret_tant_que env exp i
-  |_ -> env
 
 and interpret_si env exp itrue ifalse = 
   if (eval_expr env exp != 0) then
