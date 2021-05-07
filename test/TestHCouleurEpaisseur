@@ -8,9 +8,9 @@ Tourne y;
 Avance 300;
 Tourne x;
 BasPinceau;
-ChangeEpaisseur 10;
+ChangeEpaisseur 10;//Change l'epaisseur à 10 
 Avance 100;
-ChangeEpaisseur 1;
+ChangeEpaisseur 1;//Change l'epaisseur à 1 !
 ChangeCouleur bleu;
 Tourne y;
 Avance 20;
