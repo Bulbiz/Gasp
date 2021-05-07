@@ -38,18 +38,31 @@ let rec eval_expr env exp =
   | Id (var) -> get_value var env
   | Plus (exp1, exp2) -> (eval_expr env exp1) + (eval_expr env exp2)
   | Moins (exp1, exp2) -> (eval_expr env exp1) - (eval_expr env exp2)
-  | Division (exp1, exp2) -> (eval_expr env exp1) / (eval_expr env exp2)
+  | Division (exp1, exp2) -> 
+    if (eval_expr env exp2) == 0 then(
+      Printf.printf "Erreur Division par Zéro !\n";
+      exit 0
+    )else 
+      (eval_expr env exp1) / (eval_expr env exp2)
   | Multiplication (exp1, exp2) -> (eval_expr env exp1) * (eval_expr env exp2)
 
 let interpret_avance env value =
   printf "Avance %d\n" value;
   update_current_position (float_of_int value) 0 (!current_position.pen);
-  if !current_position.pen then
-    (moveto (int_of_float !current_position.x) (int_of_float !current_position.y);
-    env)
-  else 
-    (lineto (int_of_float !current_position.x) (int_of_float !current_position.y);
-    env)
+  let x = int_of_float !current_position.x in
+  let y = int_of_float !current_position.y in
+  if (x < 0 || y < 0 || x > 1000 || y > 600) then
+  (
+    Printf.printf "Erreur, le curseur est sorti du canvas !\n";
+    exit 0
+  )else(
+    if !current_position.pen then
+      (moveto x y;
+      env)
+    else 
+      (lineto x y;
+      env)
+  )
 ;;
 
 let interpret_tourne env value =
