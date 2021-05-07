@@ -18,6 +18,8 @@ type expression =
 type instruction =
   | Avance of expression
   | Tourne of expression
+  | ChangeCouleur of string
+  | ChangeEpaisseur of nombre
   | BasPinceau
   | HautPinceau
   | Affectation of identificateur * expression

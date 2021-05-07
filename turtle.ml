@@ -77,10 +77,38 @@ let interpret_affectation env id value =
 ;;
 
 
+let interpret_couleur env (id : string) =
+  Printf.printf "ChangeCouleur %s\n" id;
+  match id with
+  |"black" -> set_color black; env
+  |"white" -> set_color white; env
+  |"red" -> set_color red; env
+  |"green" -> set_color green; env
+  |"blue" -> set_color blue; env
+  |"yellow" -> set_color yellow; env
+  |"cyan" -> set_color cyan; env
+  |"magenta" -> set_color magenta; env
+  | _ -> set_color black; env
+;;
+
+
+let interpret_epaisseur env value =
+  Printf.printf "ChangeEpaisseur %d\n" value;
+  if value < 0 then(
+    Printf.printf "Vous ne pouvez pas demander une valeur négative pour l'épaisseur\n";
+    env
+  )else(
+    set_line_width value;
+    env
+  )
+
+
 let rec interpret_instruction env i =
   match i with
   |Avance (exp) -> interpret_avance env (eval_expr env exp)
   |Tourne (exp) -> interpret_tourne env (eval_expr env exp)
+  |ChangeCouleur (couleur) -> interpret_couleur env couleur
+  |ChangeEpaisseur (taille) -> interpret_epaisseur env taille
   |BasPinceau -> interpret_bas_pinceau env
   |HautPinceau -> interpret_haut_pinceau env
   |Affectation (id,exp) -> interpret_affectation env id (eval_expr env exp)
