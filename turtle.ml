@@ -78,6 +78,7 @@ let interpret_affectation env id value =
 
 
 let interpret_couleur env (id : string) =
+  Printf.printf "ChangeCouleur %s\n" id;
   match id with
   |"black" -> set_color black; env
   |"white" -> set_color white; env
@@ -92,8 +93,9 @@ let interpret_couleur env (id : string) =
 
 
 let interpret_epaisseur env value =
+  Printf.printf "ChangeEpaisseur %d\n" value;
   if value < 0 then(
-    printf "Vous ne pouvez pas demander une valeur négative pour l'épaisseur\n";
+    Printf.printf "Vous ne pouvez pas demander une valeur négative pour l'épaisseur\n";
     env
   )else(
     set_line_width value;
