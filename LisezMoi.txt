@@ -1,1 +1,48 @@
-dune exec ./main.exe < test/TestAngle
+Projet GA6
+
+Membres du binôme :
+PHOL ASA Rémy
+KHOW Antoine
+
+Compilation :
+Pour compiler le projet, il suffit de faire make à la racine du projet (dune 2.7 et menhir 2.1 requis)
+
+Exécution :
+Après avoir make, au même endroit entrez : 
+dune exec ./main.exe < test/#T
+
+#T = nom d'un fichier contenant un programme de test
+Exemple : dune exec ./main.exe < test/TestH
+
+Attention, si vous testez Si expression Alors instruction Sinon instruction, écrivez là scrupuleusement de la forme :
+Si expression Alors instruction Sinon instruction; (N'oubliez pas le ; car Si est une instruction)
+Exemple :
+Si angle Alors
+ChangeCouleur bleu
+Sinon
+Debut
+ChangeCouleur jaune;
+Avance 100;
+Fin;
+
+Travail réalisé :
+Les parties 1 à 3 du projet ont été entièrement implémentées, pour les extensions de la partie 4, nous avons implémenté 
+ChangeCouleur et ChangeEpaisseur.
+
+Répartition du travail :
+
+Etape 1 :
+Rémy : implémentation de la tortue et gestion des exceptions
+Antoine : Implémentation du lexeur et du deftype
+
+Ensemble : implémentation du parser
+
+Etape 2 réalisée ensemble
+
+Etape 3 : Antoine
+
+Etape 4 (ChangeCouleur ChangeEpaisseur) : Antoine
+
+Chaque travail a été réalisé en amont durant chaque sprint puis débuggué ensemble lors d'une réunion en fin de semaine.
+Ces réunions se sont faites en vocal avec partage d'écran, les corrections/ajustements ont été écrites et push sur un seul 
+ordinateur mais réalisés à deux.
