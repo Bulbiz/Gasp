@@ -7,7 +7,6 @@ let id = ['a'-'z']['a'-'z''A'-'Z''0'-'9']*
 let layout = [ ' ' '\t' '\n' ]
 let comment = "//"[^'\n']*'\n'
 
-(*TODO: implémenter epsilon*)
 rule token = parse
 |[ ' ' '\t' '\n' ] { token lexbuf }
 |comment { token lexbuf }

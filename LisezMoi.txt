@@ -14,6 +14,10 @@ dune exec ./main.exe < test/#T
 #T = nom d'un fichier contenant un programme de test
 Exemple : dune exec ./main.exe < test/TestH
 
+Test pour ChangeCouleur,ChangeEpaisseur : TestHCouleurEpaisseur
+Test pour Si et Tant que : TestBatmanIfWhile
+Test pour Commentaire : TestHCouleurEpaisseur
+
 Attention, si vous testez Si expression Alors instruction Sinon instruction, écrivez là scrupuleusement de la forme :
 Si expression Alors instruction Sinon instruction; (N'oubliez pas le ; car Si est une instruction)
 Exemple :
@@ -27,7 +31,7 @@ Fin;
 
 Travail réalisé :
 Les parties 1 à 3 du projet ont été entièrement implémentées, pour les extensions de la partie 4, nous avons implémenté 
-ChangeCouleur et ChangeEpaisseur.
+ChangeCouleur et ChangeEpaisseur. Nous avons aussi ajouté la possibilité d'ajouter des commentaires avec //
 
 Répartition du travail :
 
@@ -41,7 +45,9 @@ Etape 2 réalisée ensemble
 
 Etape 3 : Antoine
 
-Etape 4 (ChangeCouleur ChangeEpaisseur) : Antoine
+Etape 4 :
+ChangeCouleur, ChangeEpaisseur : Antoine
+Commentaire : Rémy 
 
 Chaque travail a été réalisé en amont durant chaque sprint puis débuggué ensemble lors d'une réunion en fin de semaine.
 Ces réunions se sont faites en vocal avec partage d'écran, les corrections/ajustements ont été écrites et push sur un seul 
