@@ -80,12 +80,12 @@ let interpret_affectation env id value =
 let interpret_couleur env (id : string) =
   Printf.printf "ChangeCouleur %s\n" id;
   match id with
-  |"black" -> set_color black; env
-  |"white" -> set_color white; env
-  |"red" -> set_color red; env
-  |"green" -> set_color green; env
-  |"blue" -> set_color blue; env
-  |"yellow" -> set_color yellow; env
+  |"noir" -> set_color black; env
+  |"blanc" -> set_color white; env
+  |"rouge" -> set_color red; env
+  |"vert" -> set_color green; env
+  |"bleu" -> set_color blue; env
+  |"jaune" -> set_color yellow; env
   |"cyan" -> set_color cyan; env
   |"magenta" -> set_color magenta; env
   | _ -> set_color black; env
