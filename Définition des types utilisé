@@ -1,0 +1,27 @@
+Type Instruction :
+	Var ( Identificateur)
+	Avance (Expression)
+	Tourne (Expression) 
+	BasPinceau
+	HautPinceau
+	Affectation (Identificateur, Expression)
+	Debut
+	Fin
+	
+----------------------------------------------------------------
+
+Type Expression :
+	(Nombre , Expressionsuite)
+	(Identificateur , Expressionsuite)
+	(Expression , Expressionsuite)
+	
+-----------------------------------------------
+
+Type Expressionsuite:
+	Plus(Expression)
+	Moins(Expression)
+	Rien
+
+-----------------------------------------------
+Type Identificateur (String)
+Type Nombre (Int)

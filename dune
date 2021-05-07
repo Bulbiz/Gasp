@@ -1,0 +1,9 @@
+(ocamllex (modules lexeur ))
+(menhir (modules parser))
+
+
+(executable
+ (name main)
+ (libraries graphics)
+)
+

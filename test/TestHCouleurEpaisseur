@@ -1,0 +1,53 @@
+Var x;
+Var y;
+Debut
+x=90;
+y=0-90;
+Avance 200;
+Tourne y;
+Avance 300;
+Tourne x;
+BasPinceau;
+ChangeEpaisseur 10;
+Avance 100;
+ChangeEpaisseur 1;
+ChangeCouleur bleu;
+Tourne y;
+Avance 20;
+ChangeCouleur rouge;
+Tourne y;
+Avance 40;
+ChangeCouleur vert;
+Tourne x;
+Avance 30;
+ChangeCouleur jaune;
+ChangeEpaisseur 10;
+Tourne x;
+Avance 40;
+ChangeEpaisseur 1;
+ChangeCouleur magenta;
+Tourne y;
+Avance 20;
+ChangeCouleur noir;
+Tourne y;
+Avance 100;
+ChangeCouleur nimportequoi;
+Tourne y;
+Avance 20;
+ChangeEpaisseur 10;
+ChangeCouleur cyan;
+Tourne y;
+Avance 40;
+ChangeEpaisseur 1;
+ChangeCouleur blanc;
+Tourne x;
+Avance 30;
+ChangeCouleur rouge;
+Tourne x;
+Avance 40;
+ChangeCouleur orange;
+Tourne y;
+Avance 20;
+Fin
+
+
