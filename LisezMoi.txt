@@ -31,7 +31,8 @@ Fin;
 
 Travail réalisé :
 Les parties 1 à 3 du projet ont été entièrement implémentées, pour les extensions de la partie 4, nous avons implémenté 
-ChangeCouleur et ChangeEpaisseur. Nous avons aussi ajouté la possibilité d'ajouter des commentaires avec //
+ChangeCouleur, ChangeEpaisseur ainsi que le Si simple sans Sinon. 
+Nous avons aussi ajouté la possibilité d'ajouter des commentaires avec //
 
 Répartition du travail :
 
@@ -47,8 +48,8 @@ Etape 3 : Antoine
 
 Etape 4 :
 ChangeCouleur, ChangeEpaisseur : Antoine
-Commentaire : Rémy 
+Commentaire, Si simple : Rémy 
 
-Chaque travail a été réalisé en amont durant chaque sprint puis débuggué ensemble lors d'une réunion en fin de semaine.
+Chaque étape/travail a été réalisé en amont durant chaque sprint puis débuggué ensemble lors d'une réunion en fin de semaine.
 Ces réunions se sont faites en vocal avec partage d'écran, les corrections/ajustements ont été écrites et push sur un seul 
 ordinateur mais réalisés à deux.
