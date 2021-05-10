@@ -7,6 +7,8 @@ open Deftype
 %token<int> NOMBRE
 %left PLUS MOINS
 %right MUL DIV
+%nonassoc ALORS
+%nonassoc SINON
 
 %start<Deftype.programme> s
 
@@ -50,6 +52,7 @@ expression:
 instruction:
 | DEBUT bi=blocInstruction FIN { bi } 
 | SI e=expression ALORS ba=instruction SINON bs=instruction { [Si (e, ba, bs)] }
+| SI e=expression ALORS ba=instruction { [Si (e, ba, [])] }
 | WHILE e=expression FAIRE bi=instruction { [Tant_que (e, bi)] }
 | CHANGECOULEUR c=ID { [ChangeCouleur (c)] }
 | CHANGEEPAISSEUR i=NOMBRE { [ChangeEpaisseur (i)] }
