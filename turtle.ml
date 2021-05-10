@@ -2,6 +2,7 @@ open Deftype
 open Graphics
 open Printf
 
+(*Défini la position*)
 type position =
   { x : float (** position x *)
   ; y : float (** position y *)
@@ -24,6 +25,8 @@ let update_current_position i a p=
   current_position := { x = new_x; y = new_y; a = new_a; pen = p }
 ;;
 
+
+(*Permet de récupérer la valeur de la variable id*)
 let get_value id env =
   if (List.mem_assoc id env) then(
     List.assoc id env
@@ -32,6 +35,8 @@ let get_value id env =
     0
   )
 
+
+(*Evalue une expression*)
 let rec eval_expr env exp =
   match exp with
   | Nombre (nb) -> nb
@@ -46,6 +51,8 @@ let rec eval_expr env exp =
       (eval_expr env exp1) / (eval_expr env exp2)
   | Multiplication (exp1, exp2) -> (eval_expr env exp1) * (eval_expr env exp2)
 
+
+(*Effectue la commande avance*)
 let interpret_avance env value =
   printf "Avance %d\n" value;
   update_current_position (float_of_int value) 0 (!current_position.pen);
@@ -65,24 +72,32 @@ let interpret_avance env value =
   )
 ;;
 
+
+(*Effectue la commande tourne*)
 let interpret_tourne env value =
   printf "Tourne %d\n" value;
   update_current_position 0. value (!current_position.pen);
   env
 ;;
 
+
+(*Effectue la commande BasPinceau*)
 let interpret_bas_pinceau env =
   printf "Bas\n";
   update_current_position 0. 0 false;
   env
 ;;
 
+
+(*Effectue la commande HautPinceau*)
 let interpret_haut_pinceau env =
   printf "Haut\n";
   update_current_position 0. 0 true;
   env
 ;;
 
+
+(*Effectue l'opération d'affectation*)
 let interpret_affectation env id value =
   printf "Affectation %s : %d\n" id value;
   let new_env = (id,value) :: (List.remove_assoc id env) in
@@ -90,6 +105,7 @@ let interpret_affectation env id value =
 ;;
 
 
+(*Effectue le changement de couleur de la tortue*)
 let interpret_couleur env (id : string) =
   Printf.printf "ChangeCouleur %s\n" id;
   match id with
@@ -105,6 +121,7 @@ let interpret_couleur env (id : string) =
 ;;
 
 
+(*Effectue le changement d'épaisseur du trait de la tortue*)
 let interpret_epaisseur env value =
   Printf.printf "ChangeEpaisseur %d\n" value;
   if value < 0 then(
@@ -143,6 +160,7 @@ and interpret_tant_que env exp i =
   else
     env
 
+(*Interprète une liste d'instruction*)
 and interpret_instructions env il =
   match il with
   | i :: l -> 
@@ -150,6 +168,8 @@ and interpret_instructions env il =
     interpret_instructions new_env l
   | [] -> env
 
+  
+(*Transforme une déclaration en un couple clé, valeur*)
 let transform_declaration d =
   match d with
   |Var(s) -> 
@@ -157,6 +177,8 @@ let transform_declaration d =
     (s,0)
 ;;
 
+
+(*Interprète le programme*)
 let interpret_programme programme =
   match programme with
   | Programme (dl,il) -> 
