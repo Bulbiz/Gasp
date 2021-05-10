@@ -15,6 +15,9 @@ ChangeCouleur jaune;
 Avance 100;
 Fin;
 
+Si 1 Alors
+ChangeEpaisseur 8;
+
 Tourne 0-45;
 HautPinceau;
 Avance 100;
